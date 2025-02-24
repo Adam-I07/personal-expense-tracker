@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "date": "2025-10-15",
+        "category": "Food",
+        "receipt": "Yes",
+        "description": "Lunch",
+        "amount_spent": 25.0
+    },
+    {
+        "id": 2,
+        "date": "2025-01-16",
+        "category": "Fuel Cost",
+        "receipt": "No",
+        "description": "Filled up the car",
+        "amount_spent": 40.0
+    }
+]
