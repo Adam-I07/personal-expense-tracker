@@ -1,3 +1,4 @@
+from tabulate import tabulate
 import json_handling
 
 class AedvExpense():
@@ -16,9 +17,8 @@ class AedvExpense():
     
     def display_expenses(self):
         print("------------------------")
-        for expense in self.current_expenses:
-            print(f"Expense: {expense['id']}, Date: {expense['date']}, Category: {expense['category']}, Reciept: {expense['description']}, Amount Spent: {expense['amount_spent']}") 
-            print("------------------------")
+        print(tabulate(self.current_expenses,headers='keys', tablefmt='grid'))
+        print("------------------------")
 
     def view_expense(self):
         return
