@@ -1,11 +1,12 @@
 from colorama import Fore
 import aedv_expense
-import expenses
 import analysis
+import add_expense
 
 class Start():
     def __init__(self):
         self.aedv_instance = aedv_expense.AedvExpense()
+        self.add_expense_instance = add_expense.AddExpense()
 
     def start_program(self):
         self.aedv_instance.start_program()
@@ -32,9 +33,8 @@ class Start():
         while True:
             user_choice = input("Enter the numerical value assosciated with the option you would like to invoke: ")
             if user_choice == "1":
-                print("------------------------")
-                print("Add Expense")
-                print("------------------------")
+                self.add_expense_instance.add_expense()
+                self.display_menu()
             elif user_choice == "2":
                 print("------------------------")
                 print("Edit Expenses")
@@ -42,7 +42,7 @@ class Start():
             elif user_choice == "3":
                 print("------------------------")
                 print("View Expenses")
-                self.aedv_instance.display_expenses()
+                self.aedv_instance.view_expenses()
             elif user_choice == "4":
                 print("------------------------")
                 print("Delete Expense")
