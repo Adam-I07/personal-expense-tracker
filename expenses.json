@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "date": "15/01/2025",
+        "category": "Food Expense",
+        "has_receipt": "Yes",
+        "description": "Lunch",
+        "amount_spent": "\u00a325.0"
+    },
+    {
+        "id": 2,
+        "date": "16/01/2025",
+        "category": "Fuel Expense",
+        "has_receipt": "No",
+        "description": "Filled up the car",
+        "amount_spent": "\u00a340.0"
+    },
+    {
+        "id": 3,
+        "date": "26/02/2025",
+        "category": "Fuel Expense",
+        "has_receipt": "yes",
+        "description": "fuel on Wednesday",
+        "amount_spent": "\u00a345.03"
+    },
+    {
+        "id": 4,
+        "date": "26/02/2025",
+        "category": "Food Expense",
+        "has_receipt": "yes",
+        "description": "dinner",
+        "amount_spent": "\u00a320.55"
+    }
+]
