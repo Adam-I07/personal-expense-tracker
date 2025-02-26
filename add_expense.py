@@ -1,60 +1,94 @@
 from colorama import Fore
+import json_handling
 
 class AddExpense():
     def __init__(self):
-        self.new_expense = {"id" : " ", "date" : " ", "category" : " ", "has_receipt" : " ", "description" : " ", "amount" : " "}
-        pass
-        
-    def add_expense(self):
-        self.add_expense_menu()
-        while True:
-            user_input = input("Enter the numerical value assosciated with the option you would like to invoke: ")
-            if user_input == "1":
-                self.create_expense()
-            elif user_input == "2":
-                pass
-            elif user_input == "3":
-                pass
-            elif user_input == "4":
-                pass
-            elif user_input == "5":
-                break
-            else:
-                print("------------------------")
-                print(Fore.RED + "Invalid input! Try again!" + Fore.WHITE)
-                print("------------------------")
+        self.new_expense = {"id" : " ", "date" : " ", "category" : " ", "has_receipt" : " ", "description" : " ", "amount_spent" : " "}
+        self.json_handling_instance = json_handling.JsonHandling()
     
     def go_back(self):
         return
 
-    def create_expense(self):
+    def add_expense(self):
         print("------------------------")
-        print("Create Expense")
+        print("Add New Expense")
         print("------------------------")
         expense_date = self.date_validation()
-        expense_category = input("Enter category of expense: ")
+        expense_category = self.select_category()
         expense_has_receipt = self.has_receipt_validation()
-        expense_description = input("Enter description of receipt: ")
+        expense_description = self.description_validation()
         expense_amount = self.amount_validation()
         self.new_expense["date"] = expense_date
         self.new_expense["category"] = expense_category
         self.new_expense["has_receipt"] = expense_has_receipt
         self.new_expense["description"] = expense_description
-        self.new_expense["amount"] = expense_amount
-        print(self.new_expense)
-        
+        self.new_expense["amount_spent"] = expense_amount
+        self.save_expense()
 
-    def add_expense_menu(self):
+    def description_validation(self):
+        while True:
+            user_input = input("Enter description of receipt: ")
+            if user_input:
+                return user_input
+            else:
+                return "No Description Provided"
+
+    def select_category(self):
         print("------------------------")
-        print("Add Expense Menu")
-        print("------------------------")
-        print("Options:")
-        print("1. Create Expense")
-        print("2. Edit Expense")
-        print("3. View Options")
-        print("4. Submit Expense")
-        print("5. Go Back")
-        print("------------------------")
+        print("Select Category")
+        print("1. Fuel Expense")
+        print("2. Food Expense")
+        print("3. Entertainment Expense")
+        print("4. Accomodation Expense")
+        print("5. Development and Training Expense")
+        print("6. Work Equipment Expenses")
+        print("7. Work Uniform Expenses")
+        print("8. Client Expenses")
+        print("9. Other Expense")
+
+        while True:
+            user_choice = input("Enter the numerical value assosciated with the option you would like to invoke: ")
+            if user_choice == "1":
+                print("------------------------")
+                return "Fuel Expense"
+            elif user_choice == "2":
+                print("------------------------")
+                return "Food Expense"
+            elif user_choice == "3":
+                print("------------------------")
+                return "Entertainment Expense"
+            elif user_choice == "4":
+                print("------------------------")
+                return "Accomodation Expense"
+            elif user_choice == "5":
+                print("------------------------")
+                return "Development and Training Expense"
+            elif user_choice == "6":
+                print("------------------------")
+                return "Work Equipment Expenses"
+            elif user_choice == "7":
+                print("------------------------")
+                return "Work Uniform Expenses"
+            elif user_choice == "8":
+                print("------------------------")
+                return "Client Expenses"
+            elif user_choice == "9":
+                print("------------------------")
+                return "Other Expense"
+            else:
+                print("Invalid choice. Please enter a numerical value between 1 and 9.")
+        
+    def save_expense(self):
+        while True:
+            save_choice = input("Do you want to save this expense? (yes/no): ")
+            if save_choice.lower() == "yes":
+                self.json_handling_instance.add_expense(self.new_expense)
+                break
+            elif save_choice.lower() == "no":
+                self.new_expense = {"id" : " ", "date" : " ", "category" : " ", "has_receipt" : " ", "description" : " ", "amount" : " "}
+                return
+            else:
+                print("Invalid choice. Please enter yes or no.")
     
     def date_validation(self):
         while True:

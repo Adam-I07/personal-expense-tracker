@@ -1,16 +1,53 @@
 from colorama import Fore
-import aedv_expense
+import view_expense
 import analysis
 import add_expense
 
 class Start():
     def __init__(self):
-        self.aedv_instance = aedv_expense.AedvExpense()
+        self.view_expense_instance = view_expense.ViewExpense()
         self.add_expense_instance = add_expense.AddExpense()
 
     def start_program(self):
-        self.aedv_instance.start_program()
-        self.load_menu()
+            self.display_menu()
+            while True:
+                user_choice = input("Enter the numerical value assosciated with the option you would like to invoke: ")
+                if user_choice == "1":
+                    self.add_expense_instance.add_expense()
+                    self.display_menu()
+                elif user_choice == "2":
+                    print("------------------------")
+                    print("Edit Expenses")
+                    print("------------------------")
+                elif user_choice == "3":
+                    print("------------------------")
+                    print("View Expenses")
+                    self.view_expense_instance.view_expenses()
+                elif user_choice == "4":
+                    print("------------------------")
+                    print("Delete Expense")
+                    print("------------------------")
+                elif user_choice == "5":
+                    print("------------------------")
+                    print("Total Spending")
+                    print("------------------------")
+                elif user_choice == "6":
+                    print("------------------------")
+                    print("Filter Expenses")
+                    print("------------------------")
+                elif user_choice == "7":
+                    print("------------------------")
+                    print("Analysis")
+                    print("------------------------")
+                elif user_choice == "8":
+                    self.display_menu()
+                elif user_choice == "9":
+                    print("------------------------")
+                    self.end_program()
+                else:
+                    print("------------------------")
+                    print(Fore.RED + "Invalid input, you can only enter the numerical value assosciated with the 8 options! Try again." + Fore.WHITE)
+                    print("------------------------")
 
     def display_menu(self):
         print("------------------------")
@@ -27,47 +64,6 @@ class Start():
         print("8. View Options")
         print("9. Exit")
         print("------------------------")
-
-    def load_menu(self):
-        self.display_menu()
-        while True:
-            user_choice = input("Enter the numerical value assosciated with the option you would like to invoke: ")
-            if user_choice == "1":
-                self.add_expense_instance.add_expense()
-                self.display_menu()
-            elif user_choice == "2":
-                print("------------------------")
-                print("Edit Expenses")
-                print("------------------------")
-            elif user_choice == "3":
-                print("------------------------")
-                print("View Expenses")
-                self.aedv_instance.view_expenses()
-            elif user_choice == "4":
-                print("------------------------")
-                print("Delete Expense")
-                print("------------------------")
-            elif user_choice == "5":
-                print("------------------------")
-                print("Total Spending")
-                print("------------------------")
-            elif user_choice == "6":
-                print("------------------------")
-                print("Filter Expenses")
-                print("------------------------")
-            elif user_choice == "7":
-                print("------------------------")
-                print("Analysis")
-                print("------------------------")
-            elif user_choice == "8":
-                self.load_menu()
-            elif user_choice == "9":
-                print("------------------------")
-                self.end_program()
-            else:
-                print("------------------------")
-                print(Fore.RED + "Invalid input, you can only enter the numerical value assosciated with the 8 options! Try again." + Fore.WHITE)
-                print("------------------------")
 
     def end_program(self):
         print("Program Exited!")
