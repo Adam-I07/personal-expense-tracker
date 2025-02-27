@@ -12,7 +12,7 @@ class JsonHandling():
             pass
         with open('expenses.json') as f:
             self.loaded_expenses = json.load(f)
-
+            
     def get_expense(self, expense_id):
         for expense in self.loaded_expenses:
             if expense['id'] == int(expense_id):
@@ -22,6 +22,20 @@ class JsonHandling():
         self.get_data()
         ids = [expense['id'] for expense in self.loaded_expenses]
         return ids
+    
+    def get_costs(self):
+        self.get_data()
+        total_cost = []
+        for expense in self.loaded_expenses:
+            total_cost.append(expense['amount_spent'])
+        return total_cost
+    
+    def delete_expense(self, id):
+        self.get_data()
+        for expense in self.loaded_expenses:
+            if id == expense["id"]:
+                self.loaded_expenses.remove(expense)
+        self.save_all_expenses()
     
     def edit_expense(self, expense):
         self.get_data()
@@ -44,7 +58,6 @@ class JsonHandling():
         new_id = self.get_next_available_id(self.loaded_expenses)
         expense['id'] = new_id
         self.loaded_expenses.append(expense)
-        print(self.loaded_expenses)
         with open('expenses.json', "w") as f:
             json.dump(self.loaded_expenses, f, indent=4)
 

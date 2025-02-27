@@ -19,7 +19,6 @@ class EditExpense():
             try:
                 if int(expense_to_edit) in self.expense_ids:
                     full_expense = self.json_handling_instance.get_expense(expense_to_edit)
-                    print("before ", full_expense)
                     expense_date = self.edit_date(full_expense['date'])
                     expense_category = self.edit_category(full_expense['category'])
                     expense_has_receipt = self.edit_has_receipt(full_expense['has_receipt'])

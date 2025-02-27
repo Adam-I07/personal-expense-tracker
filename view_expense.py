@@ -10,5 +10,7 @@ class ViewExpense():
         self.json_handling_instance.get_data()
         self.current_expenses = self.json_handling_instance.loaded_expenses
         print("------------------------")
+        print("View Expenses")
+        print("------------------------")
         print(tabulate(self.current_expenses,headers='keys', tablefmt='grid'))
         print("------------------------")

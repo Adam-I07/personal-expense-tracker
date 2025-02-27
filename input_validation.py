@@ -103,3 +103,14 @@ class InputValidation():
                 return "Other Expense"
             else:
                 print("Invalid choice. Please enter a numerical value between 1 and 9.")
+
+    def deletion_validation(self, id):
+        while True:
+            decision = input(f"Are you sure you would like to delete expense with the id: {id}, yes/no: ")
+            if decision.lower() == 'yes':
+                return 'yes'
+            elif decision.lower() == 'no':
+                return 'no'
+            else:
+                print("Invalid input, you can only enter yes or no")
+
