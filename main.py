@@ -2,11 +2,13 @@ from colorama import Fore
 import view_expense
 import analysis
 import add_expense
+import edit_expense
 
 class Start():
     def __init__(self):
         self.view_expense_instance = view_expense.ViewExpense()
         self.add_expense_instance = add_expense.AddExpense()
+        self.edit_expense_instance = edit_expense.EditExpense()
 
     def start_program(self):
             self.display_menu()
@@ -16,9 +18,8 @@ class Start():
                     self.add_expense_instance.add_expense()
                     self.display_menu()
                 elif user_choice == "2":
-                    print("------------------------")
-                    print("Edit Expenses")
-                    print("------------------------")
+                    self.edit_expense_instance.edit_expense()
+                    self.display_menu()
                 elif user_choice == "3":
                     print("------------------------")
                     print("View Expenses")
