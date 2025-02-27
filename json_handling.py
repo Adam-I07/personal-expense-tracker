@@ -12,19 +12,58 @@ class JsonHandling():
             pass
         with open('expenses.json') as f:
             self.loaded_expenses = json.load(f)
+            
+    def get_expense(self, expense_id):
+        for expense in self.loaded_expenses:
+            if expense['id'] == int(expense_id):
+                return expense
+
+    def get_existing_id(self):
+        self.get_data()
+        ids = [expense['id'] for expense in self.loaded_expenses]
+        return ids
+    
+    def get_costs(self):
+        self.get_data()
+        total_cost = []
+        for expense in self.loaded_expenses:
+            total_cost.append(expense['amount_spent'])
+        return total_cost
+    
+    def delete_expense(self, id):
+        self.get_data()
+        for expense in self.loaded_expenses:
+            if id == expense["id"]:
+                self.loaded_expenses.remove(expense)
+        self.save_all_expenses()
+    
+    def edit_expense(self, expense):
+        self.get_data()
+        id_to_change = expense["id"]
+        for item in self.loaded_expenses:
+            if id_to_change in item.values():
+                item["date"] = expense["date"]
+                item["category"] = expense["category"]
+                item["has_receipt"] = expense["has_receipt"]
+                item["description"] = expense["description"]
+                item["amount_spent"] = expense["amount_spent"]
+        self.save_all_expenses()
+    
+    def save_all_expenses(self):
+        with open('expenses.json', "w") as f:
+            json.dump(self.loaded_expenses, f, indent=4)
 
     def add_expense(self, expense):
         self.get_data()
         new_id = self.get_next_available_id(self.loaded_expenses)
         expense['id'] = new_id
         self.loaded_expenses.append(expense)
-        print(self.loaded_expenses)
         with open('expenses.json', "w") as f:
             json.dump(self.loaded_expenses, f, indent=4)
 
     def get_next_available_id(self, expenses):
         # Extract all the IDs from the expenses list
-        ids = [expense['id'] for expense in expenses]
+        ids = self.get_existing_id()
         # Sort the list of IDs
         ids.sort()
         # Check for the next available ID

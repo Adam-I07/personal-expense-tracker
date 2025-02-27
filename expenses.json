@@ -20,15 +20,23 @@
         "date": "26/02/2025",
         "category": "Fuel Expense",
         "has_receipt": "yes",
-        "description": "fuel on Wednesday",
-        "amount_spent": "\u00a345.03"
+        "description": "Fuel on Wednesday",
+        "amount_spent": "\u00a3155.04"
     },
     {
         "id": 4,
         "date": "26/02/2025",
         "category": "Food Expense",
+        "has_receipt": "no",
+        "description": "dinner away from home",
+        "amount_spent": "\u00a325.65"
+    },
+    {
+        "id": 5,
+        "date": "26/02/2025",
+        "category": "Development and Training Expense",
         "has_receipt": "yes",
-        "description": "dinner",
-        "amount_spent": "\u00a320.55"
+        "description": "Training for work",
+        "amount_spent": "\u00a395.00"
     }
 ]
