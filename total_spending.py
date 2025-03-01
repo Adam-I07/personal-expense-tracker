@@ -12,8 +12,8 @@ class TotalSpending():
         print("Total Spending")
         print("------------------------")
         data = [{"Toal Spending:" : f"£{total_cost}"}]
-        ouput_table = tabulate(data,headers = "keys", tablefmt="grid")
-        print(ouput_table)
+        output_table = tabulate(data,headers = "keys", tablefmt="grid")
+        print(output_table)
 
     def calculate_total(self, costs):
         price = []

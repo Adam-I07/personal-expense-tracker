@@ -53,6 +53,13 @@ class JsonHandling():
         with open('expenses.json', "w") as f:
             json.dump(self.loaded_expenses, f, indent=4)
 
+    def get_dates(self):
+        self.get_data()
+        dates = []
+        for expense in self.loaded_expenses:
+            dates.append(expense["date"])
+        return dates
+
     def add_expense(self, expense):
         self.get_data()
         new_id = self.get_next_available_id(self.loaded_expenses)

@@ -5,6 +5,7 @@ import add_expense
 import edit_expense
 import total_spending
 import deleting_expense
+import filter_expenses
 
 class Start():
     def __init__(self):
@@ -13,6 +14,7 @@ class Start():
         self.edit_expense_instance = edit_expense.EditExpense()
         self.total_spending_instance = total_spending.TotalSpending()
         self.deleting_expense_instance = deleting_expense.DeletingExpense()
+        self.filter_expenses_instance = filter_expenses.FilterExpense()
 
     def start_program(self):
             self.display_menu()
@@ -34,9 +36,8 @@ class Start():
                     self.total_spending_instance.show_total()
                     self.display_menu()
                 elif user_choice == "6":
-                    print("------------------------")
-                    print("Filter Expenses")
-                    print("------------------------")
+                    self.filter_expenses_instance.filter_options()
+                    self.display_menu()
                 elif user_choice == "7":
                     print("------------------------")
                     print("Analysis")
