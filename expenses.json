@@ -5,7 +5,7 @@
         "category": "Food Expense",
         "has_receipt": "Yes",
         "description": "Lunch during client meeting",
-        "amount_spent": "\u00a325.0"
+        "amount_spent": "\u00a325.00"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "category": "Fuel Expense",
         "has_receipt": "No",
         "description": "Fuel for work travel",
-        "amount_spent": "\u00a340.0"
+        "amount_spent": "\u00a340.00"
     },
     {
         "id": 3,
@@ -246,5 +246,13 @@
         "has_receipt": "Yes",
         "description": "Lunch during client meeting",
         "amount_spent": "\u00a355.0"
+    },
+    {
+        "id": 32,
+        "date": "01/03/2025",
+        "category": "Entertainment Expense",
+        "has_receipt": "yes",
+        "description": "Took customer out to golf",
+        "amount_spent": "\u00a355.00"
     }
 ]

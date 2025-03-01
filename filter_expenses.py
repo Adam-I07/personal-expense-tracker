@@ -1,9 +1,10 @@
-import json_handling
 import filter_expense_backend
+import input_validation
 
 class FilterExpense():
     def __init__(self):
         self.filter_expense_backend_instance = filter_expense_backend.FilterExpenseBackend()
+        self.input_validation_instance = input_validation.InputValidation()
 
     def filter_options(self):
         self.filter_expense_options()
@@ -13,13 +14,13 @@ class FilterExpense():
             if user_choice == "1":
                 self.filter_by_date()
             elif user_choice == "2":
-                pass
+                self.filter_by_category()
             elif user_choice == "3":
-                pass
+                self.filter_by_receipt_availability()
             elif user_choice == "4":
-                pass
+                self.filter_by_cost()
             elif user_choice == "5":
-                pass
+                self.filter_by_description()
             elif user_choice == "6":
                 return
             else:
@@ -33,9 +34,114 @@ class FilterExpense():
         print("1. Filter by date")
         print("2. Filter by category")
         print("3. Filter by receipt availability")
-        print("4. Filter by cost amount")
+        print("4. Filter by amount spent")
         print("5. Filter by description")
         print("6. Go Back")
+
+    # ---- Filter By Description ---- #
+    def filter_by_description(self):
+        while True:
+            comparable_phrase = input("Enter singular phrase/word that you would like present in description: ")
+            if comparable_phrase:
+                self.filter_expense_backend_instance.check_word(comparable_phrase)
+                print("----------------")
+            else:
+                print("Enter input!")
+
+    # ---- Filter By Cost Amount ---- #
+    def filter_by_cost(self):
+        print("------------------------")
+        amount = self.input_validation_instance.amount_validation_filter()
+        self.filter_by_cost_options()
+        while True:
+            user_choice = input("Enter the number assosicated with the amount you would like to filter: ")
+            try:
+                if int(user_choice) == 1:
+                    self.filter_expense_backend_instance.return_amount(int(user_choice), amount)
+                    amount = self.input_validation_instance.amount_validation_filter()
+                    self.filter_by_cost_options()
+                elif int(user_choice) == 2:
+                    self.filter_expense_backend_instance.return_amount(int(user_choice), amount)
+                    amount = self.input_validation_instance.amount_validation_filter()
+                    self.filter_by_cost_options()
+                elif int(user_choice) == 3:
+                    validity_of_amount = self.filter_expense_backend_instance.check_amount(amount)
+                    if validity_of_amount == True:
+                        self.filter_expense_backend_instance.return_amount(int(user_choice), amount)
+                    else:
+                        print(f"No matching values to £{amount}")
+                    amount = self.input_validation_instance.amount_validation_filter()
+                    self.filter_by_cost_options()
+                elif int(user_choice) == 4:
+                    self.filter_expense_options()
+                    return
+                else:
+                    print("Invalid Input, Try Again!")
+            
+            except:
+                print("Invalid Input, Try Again!")
+
+
+    def filter_by_cost_options(self):
+        print("------------------------")
+        print("1. Get all costs higher than input")
+        print("2. Get all costs lower than input")
+        print("3. Get costs equal to input")
+        print("4. Go Back")
+        
+
+    # ---- Filter By Receipt Availiability ---- #
+    def filter_by_receipt_availability(self):
+        self.filter_by_receipt_availability_options()
+        while True:
+            user_choice = input("Enter the number assosicated with the receipt availability you would like to filter: ")
+            if int(user_choice) == 1:
+                self.filter_expense_backend_instance.return_receipt_availability("Yes")
+                self.filter_by_receipt_availability_options()
+            elif int(user_choice) == 2:
+                self.filter_expense_backend_instance.return_receipt_availability("No")
+                self.filter_by_receipt_availability_options()
+            elif int(user_choice) == 3:
+                self.filter_expense_options()
+                return
+            else:
+                print("Invalid Input, Try Again!")
+
+    def filter_by_receipt_availability_options(self):
+        print("------------------------")
+        print("1. Has Receipt")
+        print("2. Does Not Have Receipt")
+        print("3. Go Back")
+        
+
+    # ---- Filter By Category ---- #
+
+    def filter_by_category(self):
+        filter_options = ["Fuel Expense", "Food Expense","Entertainment Expense", "Accomodation Expense", "Development and Training Expense", 
+                          "Work Equipment Expenses", "Work Uniform Expenses", "Client Expenses", "Other Expense"] 
+        self.filter_by_category_options(filter_options)
+        while True:
+            print("------------------------")
+            user_choice = input("Enter the number assosicated with the category you would like to filter: ")
+            if int(user_choice) > 0 and int(user_choice) < 10:
+                self.filter_expense_backend_instance.return_category(int(user_choice)-1, filter_options)
+                self.filter_by_category_options(filter_options)
+            elif int(user_choice) == len(filter_options)+1:
+                self.filter_expense_options()
+                return
+            else:
+                print("Invalid Input, Select a valid category!")
+
+
+    def filter_by_category_options(self, category_options):
+        print("------------------------")
+        num = 0
+        for category in category_options:
+            num += 1
+            print(f"{num}. {category}")
+        print(f"{num+1}. Go Back")
+        
+    # ---- Filter By Date ---- #
 
     def filter_by_date(self):
         self.filter_by_date_options()

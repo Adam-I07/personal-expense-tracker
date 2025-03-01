@@ -51,6 +51,17 @@ class InputValidation():
             except:
                 print("Invalid input. Please enter a numeric value.")
 
+    def amount_validation_filter(self):
+        while True:
+            pounds_amount = input("Enter the pounds to filter by: ")
+            pennys_amount = input("Enter the pennys to filter by: ")
+            try: 
+                int(pounds_amount)
+                int(pennys_amount)
+                return(f"{pounds_amount}.{pennys_amount}")
+            except:
+                print("Invalid input. Please enter a numeric value.")
+
     def description_validation(self):
         while True:
             user_input = input("Enter description of receipt: ")

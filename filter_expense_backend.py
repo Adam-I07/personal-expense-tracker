@@ -5,6 +5,75 @@ class FilterExpenseBackend():
     def __init__(self):
         self.json_handling_instance = json_handling.JsonHandling()
 
+    def check_word(self, word):
+        self.json_handling_instance.get_data()
+        data = self.json_handling_instance.loaded_expenses
+        return_info = []
+        for expense in data:
+            description = expense["description"].lower()
+            if word in description:
+                return_info.append(expense)
+        if return_info:
+            self.create_table(return_info)
+        else:
+            print("Word not in any description")
+            return
+
+    def check_amount(self, amount):
+        self.json_handling_instance.get_data()
+        data = self.json_handling_instance.loaded_expenses
+        amount_valid = False
+        for expense in data:
+            expense_amount = expense["amount_spent"]
+            expense_amount_split = expense_amount.split("£")
+            expense_amount = float(expense_amount_split[1])
+            if expense_amount == float(amount):
+                print("jere")
+                amount_valid = True
+                return amount_valid
+        return False
+
+    def return_amount(self, choice, amount):
+        self.json_handling_instance.get_data()
+        data = self.json_handling_instance.loaded_expenses
+        return_info = []
+        for expense in data:
+            expense_amount = expense["amount_spent"]
+            expense_amount_split = expense_amount.split("£")
+            expense_amount = float(expense_amount_split[1])
+            if choice == 1:
+                if expense_amount > float(amount):
+                    return_info.append(expense)
+            elif choice == 2:
+                if expense_amount < float(amount):
+                    return_info.append(expense)
+            elif choice == 3:
+                if expense_amount == float(amount):
+                    return_info.append(expense)
+            else:
+                print("Invalid choice")
+                return
+            
+        self.create_table(return_info)
+
+    def return_receipt_availability(self, availability):
+        self.json_handling_instance.get_data()
+        data = self.json_handling_instance.loaded_expenses
+        return_info = []
+        for expense in data:
+            if expense["has_receipt"] == availability:
+                return_info.append(expense)
+        self.create_table(return_info)
+
+    def return_category(self, category_to_return, filter_options):
+        self.json_handling_instance.get_data()
+        data = self.json_handling_instance.loaded_expenses
+        return_info = []
+        for expense in data:
+            if expense["category"] == filter_options[category_to_return]:
+                return_info.append(expense)
+        self.create_table(return_info)
+    
     def get_dates(self):
         curret_dates = self.json_handling_instance.get_dates()
         filtered_dates = []
