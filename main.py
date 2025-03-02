@@ -1,6 +1,5 @@
 from colorama import Fore
 import view_expense
-import analysis
 import add_expense
 import edit_expense
 import total_spending
@@ -39,12 +38,8 @@ class Start():
                     self.filter_expenses_instance.filter_options()
                     self.display_menu()
                 elif user_choice == "7":
-                    print("------------------------")
-                    print("Analysis")
-                    print("------------------------")
-                elif user_choice == "8":
                     self.display_menu()
-                elif user_choice == "9":
+                elif user_choice == "8":
                     print("------------------------")
                     self.end_program()
                 else:
@@ -63,9 +58,8 @@ class Start():
         print("4. Delete Expense")
         print("5. Total Spending")
         print("6. Filter Expenses")
-        print("7. Analysis")
-        print("8. View Options")
-        print("9. Exit")
+        print("7. View Options")
+        print("8. Exit")
         print("------------------------")
 
     def end_program(self):
