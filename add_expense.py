@@ -37,7 +37,7 @@ class AddExpense():
                 self.new_expense = {"id" : " ", "date" : " ", "category" : " ", "has_receipt" : " ", "description" : " ", "amount" : " "}
                 return
             else:
-                print("Invalid choice. Please enter yes or no.")
+                print(Fore.RED + "Invalid choice. Please enter yes or no." + Fore.WHITE)
 
     
 

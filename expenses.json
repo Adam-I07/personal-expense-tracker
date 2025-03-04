@@ -250,9 +250,41 @@
     {
         "id": 32,
         "date": "01/03/2025",
-        "category": "Entertainment Expense",
+        "category": "Development and Training Expense",
         "has_receipt": "yes",
-        "description": "Took customer out to golf",
+        "description": "Mandatory Work Training",
         "amount_spent": "\u00a355.00"
+    },
+    {
+        "id": 33,
+        "date": "02/03/2025",
+        "category": "Accomodation Expense",
+        "has_receipt": "yes",
+        "description": "Accomodatioin away from home because of work",
+        "amount_spent": "\u00a3245.50"
+    },
+    {
+        "id": 35,
+        "date": "20/03/2023",
+        "category": "Development and Training Expense",
+        "has_receipt": "no",
+        "description": "deehdoehfoehfi fhweiufhw ef efwiefhwef",
+        "amount_spent": "\u00a382.23"
+    },
+    {
+        "id": 34,
+        "date": "03/03/2025",
+        "category": "Fuel Expense",
+        "has_receipt": "yes",
+        "description": "fuel used last week",
+        "amount_spent": "\u00a340.55"
+    },
+    {
+        "id": 36,
+        "date": "04/03/2025",
+        "category": "Other Expense",
+        "has_receipt": "yes",
+        "description": "Plane Ticket",
+        "amount_spent": "\u00a3560.00"
     }
 ]

@@ -1,6 +1,7 @@
 import json_handling
 import view_expense
 import input_validation
+from colorama import Fore
 
 class DeletingExpense():
     def __init__(self):
@@ -18,15 +19,19 @@ class DeletingExpense():
         
     def expese_to_delete(self, existing_id):
         while True:
-            input_decision = input("Enter the ID assosciated with the expense you would like to delete: ")
+            input_decision = input("Enter the ID assosciated with the expense you would like to delete or enter 'b' to go back: ")
             try:
-                if int(input_decision) in existing_id:
+                if input_decision.lower() == 'b':
+                    return
+                elif int(input_decision) in existing_id:
                     confirmation_deletion = self.input_validation_instance.deletion_validation(input_decision)
                     if confirmation_deletion == 'yes':
                         self.json_handling_instance.delete_expense(int(input_decision))
                         return
                     else:
                         return
+                else:
+                    print(Fore.RED + "Invalid ID, input an existing ID from table!" + Fore.WHITE)
             except:
                 print("Invalid ID, input existing ID from table!")
 

@@ -19,7 +19,7 @@ class TotalSpending():
         price = []
         for amount in costs:
             amount_split = amount.split("£")
-            amount_flaot = float(amount_split[1])
-            price.append(amount_flaot)
+            amount_float = float(amount_split[1])
+            price.append(amount_float)
         return sum(price)
         
