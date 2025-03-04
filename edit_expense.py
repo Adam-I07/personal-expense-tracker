@@ -8,16 +8,19 @@ class EditExpense():
         self.json_handling_instance = json_handling.JsonHandling()
         self.view_expense_instance = view_expense.ViewExpense()
         self.input_validation_instance = input_validation.InputValidation()
-        self.expense_ids = self.json_handling_instance.get_existing_id()
 
     def edit_expense(self):
         print("------------------------")
         print("Edit Expense")
+        self.json_handling_instance.get_data()
+        self.expense_ids = self.json_handling_instance.get_existing_id()
         self.view_expense_instance.view_expenses()
         while True:
-            expense_to_edit = input("Enter the ID of the expense you would like to edit: ")
+            expense_to_edit = input("Enter the ID of the expense you would like to edit or 'b' to go back: ")
             try:
-                if int(expense_to_edit) in self.expense_ids:
+                if expense_to_edit.lower() == 'b':
+                    return
+                elif int(expense_to_edit) in self.expense_ids:
                     full_expense = self.json_handling_instance.get_expense(expense_to_edit)
                     expense_date = self.edit_date(full_expense['date'])
                     expense_category = self.edit_category(full_expense['category'])
@@ -29,12 +32,22 @@ class EditExpense():
                     full_expense["has_receipt"] = expense_has_receipt
                     full_expense["description"] = expense_description
                     full_expense["amount_spent"] = expense_amount
-                    self.json_handling_instance.edit_expense(full_expense)
+                    self.confirm_edit_expense(full_expense)
                     return
                 else:
                     print("Invalid ID, Try Again!")
             except:
                 print("Invalid ID, Try Again!")
+
+    def confirm_edit_expense(self, expense):
+        while True:
+            user_choice = input("Are you sure you would like to edit this expense, yes or no: ")
+            if user_choice.lower() == 'yes':
+                self.json_handling_instance.edit_expense(expense)
+            elif user_choice.lower() == 'no':
+                return
+            else:
+                print("Invalid input, you can only enter yes or no")
     
     def edit_description(self, description):
         while True:
