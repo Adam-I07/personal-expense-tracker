@@ -5,6 +5,7 @@ class JsonHandling():
         self.loaded_expenses = []
         return
 
+    # get_all_expenses
     def get_data(self):
         try: 
             self.loaded_expenses.clear()
@@ -12,17 +13,20 @@ class JsonHandling():
             pass
         with open('expenses.json') as f:
             self.loaded_expenses = json.load(f)
-            
+    
+    #get_specific_expense
     def get_expense(self, expense_id):
         for expense in self.loaded_expenses:
             if expense['id'] == int(expense_id):
                 return expense
 
+    # get_existing_id
     def get_existing_id(self):
         self.get_data()
         ids = [expense['id'] for expense in self.loaded_expenses]
         return ids
     
+    # delete_expenseget_amount_spend
     def get_costs(self):
         self.get_data()
         total_cost = []
@@ -30,6 +34,7 @@ class JsonHandling():
             total_cost.append(expense['amount_spent'])
         return total_cost
     
+    # delete_expense
     def delete_expense(self, id):
         self.get_data()
         for expense in self.loaded_expenses:
@@ -37,6 +42,7 @@ class JsonHandling():
                 self.loaded_expenses.remove(expense)
         self.save_all_expenses()
     
+    # edit_expense
     def edit_expense(self, expense):
         self.get_data()
         id_to_change = expense["id"]
@@ -53,6 +59,7 @@ class JsonHandling():
         with open('expenses.json', "w") as f:
             json.dump(self.loaded_expenses, f, indent=4)
 
+    # get_existing_dates
     def get_dates(self):
         self.get_data()
         dates = []
@@ -60,6 +67,7 @@ class JsonHandling():
             dates.append(expense["date"])
         return dates
 
+    # add_expense
     def add_expense(self, expense):
         self.get_data()
         new_id = self.get_next_available_id(self.loaded_expenses)
@@ -68,6 +76,7 @@ class JsonHandling():
         with open('expenses.json', "w") as f:
             json.dump(self.loaded_expenses, f, indent=4)
 
+    # get_next_available_id
     def get_next_available_id(self, expenses):
         # Extract all the IDs from the expenses list
         ids = self.get_existing_id()

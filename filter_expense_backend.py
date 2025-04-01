@@ -96,7 +96,7 @@ class FilterExpenseBackend():
         dates = self.json_handling_instance.get_dates()
         months = []
         for date in dates:
-            split_date = date.split("/")
+            split_date = date.split("-")
             if split_date[1] not in months:
                 months.append(split_date[1])
         return months
@@ -105,7 +105,7 @@ class FilterExpenseBackend():
         dates = self.json_handling_instance.get_dates()
         years = []
         for date in dates:
-            split_date = date.split("/")
+            split_date = date.split("-")
             if split_date[2] not in years:
                 years.append(split_date[2])
         return years
@@ -115,7 +115,7 @@ class FilterExpenseBackend():
         curret_data = self.json_handling_instance.loaded_expenses
         return_info = []
         for expense in curret_data:
-            split_date = expense["date"].split("/")
+            split_date = expense["date"].split("-")
             split_year = split_date[2]
             if str(year_to_use) == split_year:
                 return_info.append(expense)
@@ -135,7 +135,7 @@ class FilterExpenseBackend():
         curret_data = self.json_handling_instance.loaded_expenses
         return_info = []
         for expense in curret_data:
-            split_date = expense["date"].split("/")
+            split_date = expense["date"].split("-")
             split_month = split_date[1]
             if str(month) == split_month:
                 return_info.append(expense)
